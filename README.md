@@ -8,7 +8,7 @@ macOS Mojave
 MacBook Pro (Retina, 13-inch, Early 2015)  
 
 InterprocessConnection PIPE - 300,000 messages per second  
-DatagramSocket - 120 message per second (wtf?)
+DatagramSocket - 150,000 message per second
 
 Test Machine:  
 Windows 10  
