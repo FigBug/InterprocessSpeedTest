@@ -16,4 +16,4 @@ Windows 10
 32 GB
 
 InterprocessConnection PIPE - 95,000 messages per second  
-DatagramSocket - 60 messages per second (wtf?)
+DatagramSocket - 90,000 messages per second
