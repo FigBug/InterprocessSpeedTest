@@ -16,8 +16,24 @@ class MainComponent   : public Component,
                         private Thread
 {
 public:
+    enum Mode
+    {
+        IPC,
+        UDP
+    };
+    
     //==============================================================================
-    MainComponent();
+    MainComponent()
+      : InterprocessConnection (false),
+        Thread ("Sender")
+    {
+        startTimerHz (1);
+        setSize (600, 400);
+        
+        if (mode == UDP)
+            startThread();
+    }
+    
     ~MainComponent();
     
     void connectionMade() override
@@ -42,7 +58,7 @@ public:
     
     void timerCallback() override
     {
-        if (! isConnected())
+        if (! isConnected() && mode == IPC)
             connectToPipe ("ipcTest", -1);
     }
     
@@ -53,7 +69,10 @@ public:
         
         while (! threadShouldExit())
         {
-            sendMessage (mb);
+            if (mode == IPC)
+                sendMessage (mb);
+            else if (mode == UDP)
+                sock.write ("127.0.0.1", 54231, mb.getData(), (int) mb.getSize());
         }
     }
     
@@ -61,9 +80,12 @@ public:
     void paint (Graphics&) override;
     void resized() override;
 
+    
 private:
     //==============================================================================
     bool connected = false;
+    Mode mode = UDP;
+    DatagramSocket sock;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
 };

@@ -9,12 +9,7 @@
 #include "MainComponent.h"
 
 //==============================================================================
-MainComponent::MainComponent()
-    : InterprocessConnection (false), Thread ("Sender")
-{
-    startTimerHz (1);
-    setSize (600, 400);
-}
+
 
 MainComponent::~MainComponent()
 {

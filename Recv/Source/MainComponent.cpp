@@ -9,15 +9,7 @@
 #include "MainComponent.h"
 
 //==============================================================================
-MainComponent::MainComponent()
-    : InterprocessConnection (false)
-{
-    startTimerHz (1);
-    setSize (600, 400);
-    
-    if (! createPipe ("ipcTest", -1))
-        printf ("Can't create pipe\n");
-}
+
 
 MainComponent::~MainComponent()
 {
