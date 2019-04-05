@@ -45,13 +45,13 @@ public:
         MemoryBlock mb;
         mb.setSize (65 * 1024);
         
-        if (! sock.bindToPort (54231))
+        if (! sock.bindToPort (4576))
             printf ("Can't bind\n");
         
         while (! threadShouldExit())
         {
-            sock.read (mb.getData(), (int) mb.getSize(), true);
-            ++cnt;
+            if (sock.read (mb.getData(), (int) mb.getSize(), false) > 0)
+                ++cnt;
         }
     }
     

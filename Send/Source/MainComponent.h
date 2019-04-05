@@ -67,12 +67,13 @@ public:
         MemoryBlock mb;
         mb.setSize (64, 0);
         
+        String dest = "127.0.0.1";
         while (! threadShouldExit())
         {
             if (mode == IPC)
                 sendMessage (mb);
             else if (mode == UDP)
-                sock.write ("127.0.0.1", 54231, mb.getData(), (int) mb.getSize());
+                sock.write (dest, 4576, mb.getData(), (int) mb.getSize());
         }
     }
     
